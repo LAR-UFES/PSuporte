@@ -1,0 +1,49 @@
+﻿@model List<PSuporte.Domain.Models.ProcessoSeletivo>
+@using PSuporte.Domain.Extensions
+@using PSuporte.Domain.Models.Enuns
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div style="text-align: center; margin: 30px 0 30px 0;">
+    <h1>PSuporte</h1>
+    <p class="lead">
+        Sistema de Seleção do Suporte - DI
+    </p>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="card">
+            <h4 class="card-header">@item.Titulo</h4>
+        <div class="card-body">
+            <b>Situação:</b>
+
+            @switch (item.Situacao)
+            {
+                case Situacao.Cancelado:
+                    <text><div class="btn btn-sm btn-warning" style="pointer-events: none; margin-right: 10px;">@item.Situacao.GetDisplayValue()</div></text>
+                    break;
+                case Situacao.EmAndamento:
+                    <text><div class="btn btn-sm btn-success" style="pointer-events: none; margin-right: 10px;">@item.Situacao.GetDisplayValue()</div></text>
+                    break;
+                case Situacao.Encerrado:
+                    <text><div class="btn btn-sm btn-danger" style="pointer-events: none; margin-right: 10px;">@item.Situacao.GetDisplayValue()</div></text>
+                    break;
+            }
+
+            <b>Data de Início:</b> @item.DataInicio.ToString("dd/MM/yyyy")
+            <b>Data de Término:</b> @item.DataFim.ToString("dd/MM/yyyy")
+
+            <div style="float: right;">
+                <a>
+                    @if(item.Situacao == Situacao.EmAndamento)
+                    {
+                        <text><a asp-controller="ProcessoSeletivo" asp-action="Inscricao" asp-route-id="@item.Id">Inscrever-se</a></text>
+                    }
+                </a>
+            </div>
+        </div>
+    </div>
+}

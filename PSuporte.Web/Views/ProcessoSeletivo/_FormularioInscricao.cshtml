@@ -1,0 +1,39 @@
+﻿@model PSuporte.Domain.Models.ProcessoSeletivo
+
+<form id="formulario-ps">
+    <div class="form-group">
+        @Html.Hidden("ProcessoSeletivoId", Model.Id)
+        @Html.Label("Nome", "Nome Completo*")
+        @Html.TextBox("Nome", null, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Email", "Endereço de E-mail*")
+        @Html.TextBox("Email", null, new { @class = "form-control" })
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Curso", "Curso*")
+        <select id="Curso" name="Curso" class="form-control custom-select">
+            <option selected>Selecione…</option>
+            <option value="CienciaComputacao">Ciência da computação</option>
+            <option value="EngenhariaComputacao">Engenharia de computação</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("HorarioIndividual", "Horário Individual*")
+        <input type="file" id="HorarioIndividual" name="HorarioIndividual" class="form-control-file" />
+        <small class="form-text text-muted">São aceitos apenas arquivos de formato PDF.</small>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Indisponibilidades", "Indisponibilidades")
+        @Html.TextArea("Indisponibilidades", null, new { @class = "form-control", @rows = "5" })
+    </div>
+</form>
+
+<button class="btn btn-primary" style="margin-top: 30px;" onclick="Lemos.Framework.ProcessoSeletivo.EnviarInscricao()">
+    <i class="glyphicon glyphicon-send"></i> Enviar inscrição
+</button>
