@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.IO;
+﻿using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace PSuporte.Domain.Extensions
 {
